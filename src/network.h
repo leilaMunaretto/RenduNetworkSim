@@ -14,37 +14,57 @@ public:
 
 /*! 
     Resizes the list of nodes (\ref values) and also resets all values.
-    After this function is called \ref values has size *n* and contains random numbers (normal distribution, mean=0, sd=1).
- */
+    After this function is called \ref values has size *n* and contains random numbers (normal distribution, mean=0, sd=1). 
+*/
     void resize(const size_t& n);
+    
 /*! 
   Adds a bidirectional link between two nodes
   @param[in] a,b the indexes if the two nodes 
-  @param[out] success the link was succesfully inserted (true if both nodes exist and the link did not exist yet)
- */
+  @param[out] success the link was succesfully inserted (true if both nodes exist and the link did not exist yet) 
+*/
     bool add_link(const size_t& a, const size_t& b);
+    
+/*!
+	Check if the link already exist, return true if yes 
+*/
+    bool is_linked(const size_t& a, const size_t& b);
+    
+    
 /*! Creates random connections between nodes: each node *n* will be linked with *degree(n)* other nodes (randomly chosen),
   where *degree(n)* is Poisson-distributed.
 
   All previous links are erased first.
-  @param mean_deg the average of the Poisson distribution.
- */
+  @param mean_deg the average of the Poisson distribution. 
+*/
     size_t random_connect(const double&);
+    
+    
 /*! Resets all node values.
   @param[in] vector of new node values
-  @param[out] number of nodes succesfully reset
- */
+  @param[out] number of nodes succesfully reset 
+*/
     size_t set_values(const std::vector<double>& newVal);
+    
+    
 /*! Number of nodes */
     size_t size() const;
+    
+    
 /*! Degree (number of links) of node no *n* */
     size_t degree(const size_t &_n) const;
+    
+    
 /*! Value of node no *n* */
     double value(const size_t &_n) const;
+    
+    
 /*! All node values in descending order.
-    \ref values is left unchanged by this operation.
- */
+    \ref values is left unchanged by this operation. */
+    
     std::vector<double> sorted_values() const;
+    
+    
 /*! All neighbors (linked) nodes of node no *n* */
     std::vector<size_t> neighbors(const size_t& n) const;
 

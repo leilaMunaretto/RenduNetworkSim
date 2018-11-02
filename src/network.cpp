@@ -11,12 +11,10 @@ void Network::resize(const size_t& n)
 	
 	for(size_t i(0); i < n ; i++)
 	{
-		values.push_back(RNG.normal()) ;	
+		values.push_back(RNG.normal());
 	}
 	
 }
-
-
 
 
 
@@ -24,14 +22,20 @@ bool Network::add_link(const size_t& a, const size_t& b)
 {
 	if (a<this->size() and b<this->size() and a!=b)
 	{
+		if ( not(is_linked(a,b)))
+		{
+			std::pair<size_t,size_t> myPair1(a,b);
+			std::pair<size_t,size_t> myPair2(b,a);
 		
-		std::pair<size_t,size_t> myPair1(a,b);
-		std::pair<size_t,size_t> myPair2(b,a);
-	
-		links.insert(myPair1);
-		links.insert(myPair2);
-		
-		return true; 
+			links.insert(myPair1);
+			links.insert(myPair2);
+			
+			return true; 
+		}
+		else
+		{
+			return false;
+		}
 	}
 	else
 	{
@@ -134,3 +138,20 @@ std::vector<size_t> Network::neighbors(const size_t& n) const
 	return ngb ;
    
 }
+
+
+
+
+bool Network::is_linked(const size_t& a, const size_t& b)
+{
+	for (auto ngb : this->neighbors(a))
+	{   
+		if (ngb == b)
+		{
+			return true ;
+		}
+	}
+	
+	return false;
+		
+} 
