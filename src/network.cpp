@@ -46,7 +46,7 @@ bool Network::add_link(const size_t& a, const size_t& b)
 }
 
 
-size_t Network::random_connect(const double& mean)
+size_t Network::random_connect(const double& mean) 
 {
 	size_t count(0);
 	
